@@ -1,4 +1,7 @@
-![Coral Catalog Icon](showcase_images/coral_catalog_icon.png)
+<p align="center">
+  <img src="showcase_images/coral_catalog_icon.png" alt="Coral Catalog Icon" width="300">
+</p>
+
 # Coral Catalog
 
 ### A Semantic Query-Planning Cache for Coral Agents
