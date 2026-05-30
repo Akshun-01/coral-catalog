@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coral Catalog Live A/B Harness</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --ink: #172033;
+      --muted: #5d687a;
+      --line: #dbe0ea;
+      --accent: #155eef;
+      --cold: #b42318;
+      --hot: #067647;
+      --warn: #b54708;
+      --code: #101828;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 14px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    header {
+      padding: 18px 24px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    main {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      gap: 16px;
+    }
+
+    h1, h2, h3 { margin: 0; letter-spacing: 0; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 17px; }
+    h3 { font-size: 13px; color: var(--muted); text-transform: uppercase; }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button {
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    button.secondary {
+      background: #fff;
+      color: var(--accent);
+    }
+
+    textarea, input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      padding: 10px;
+    }
+
+    textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    .card, .panel, .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .card {
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px 180px;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .sources {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .source-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: var(--ink);
+    }
+
+    .source-pill small {
+      color: var(--muted);
+    }
+
+    .notice {
+      border-left: 3px solid var(--warn);
+      background: #fffaeb;
+      padding: 10px 12px;
+      color: #7a2e0e;
+      border-radius: 6px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .panel {
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .badge.cold { background: #fee4e2; color: var(--cold); }
+    .badge.hot { background: #dcfae6; color: var(--hot); }
+    .badge.neutral { background: #eef2f7; color: var(--muted); }
+
+    .panel-body {
+      padding: 16px;
+      display: grid;
+      gap: 16px;
+      overflow: auto;
+      align-content: start;
+    }
+
+    .usage {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .metric {
+      padding: 10px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .answer {
+      border-left: 3px solid var(--line);
+      padding-left: 12px;
+      white-space: pre-wrap;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--code);
+      font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .sql-call {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .form-grid, .grid, .usage { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Coral Catalog Live A/B Harness</h1>
+      <div>Same question, same model, two isolated contexts: Coral-only vs Catalog + Coral.</div>
+    </div>
+    <button id="rebuild" class="secondary">Rebuild Catalog</button>
+  </header>
+
+  <main>
+    <section class="card">
+      <div id="setup-notice" class="notice" hidden></div>
+      <div class="form-grid">
+        <label>
+          Question
+          <textarea id="question">Investigate the enterprise SSO login incident. Identify the causal PR, deployment, incident ID, Sentry/support impact, Slack/customer evidence, and rollback or follow-up fixes.</textarea>
+        </label>
+        <label>
+          Provider
+          <select id="provider">
+            <option value="gemini">Gemini</option>
+            <option value="groq">Groq</option>
+          </select>
+        </label>
+        <label>
+          Model
+          <input id="model" value="gemini-2.5-flash">
+        </label>
+        <button id="run">Run Live A/B</button>
+      </div>
+      <div>
+        <h3>Allowed Coral Sources</h3>
+        <div id="sources" class="sources"></div>
+      </div>
+      <div class="footer-actions">
+        <span id="run-status">No run started.</span>
+        <span id="rebuild-status"></span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Coral Only</h2>
+          <span id="cold-status" class="badge cold">idle</span>
+        </div>
+        <div class="panel-body" id="cold-panel"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Catalog + Coral</h2>
+          <span id="catalog-status" class="badge hot">idle</span>
+        </div>
+        <div class="panel-body" id="catalog-panel"></div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const fmt = new Intl.NumberFormat();
+    const state = { sources: [], runId: null, pollTimer: null };
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#039;",
+      }[char]));
+    }
+
+    async function fetchJson(url, options) {
+      const response = await fetch(url, options);
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || response.statusText);
+      return payload;
+    }
+
+    async function loadSources() {
+      try {
+        const payload = await fetchJson("/api/sources");
+        state.sources = payload.sources;
+        document.getElementById("provider").value = payload.defaultProvider;
+        document.getElementById("model").value = payload.defaultModel;
+        document.getElementById("setup-notice").hidden = payload.providerConfigured;
+        document.getElementById("setup-notice").textContent = payload.providerConfigured
+          ? ""
+          : "No provider API key is set. Set GEMINI_API_KEY/GOOGLE_API_KEY or GROQ_API_KEY and restart demo_server.py.";
+        document.getElementById("run").disabled = !payload.providerConfigured;
+        document.getElementById("provider").dataset.groqConfigured = String(payload.groqConfigured);
+        document.getElementById("provider").dataset.geminiConfigured = String(payload.geminiConfigured);
+        document.getElementById("provider").dataset.groqModel = payload.models.groq;
+        document.getElementById("provider").dataset.geminiModel = payload.models.gemini;
+        renderSources(payload.sources);
+      } catch (error) {
+        document.getElementById("setup-notice").hidden = false;
+        document.getElementById("setup-notice").textContent = error.message;
+        document.getElementById("run").disabled = true;
+      }
+    }
+
+    function renderSources(sources) {
+      const selectedDefault = sources.some((source) => source.name === "ops_incident_demo")
+        ? "ops_incident_demo"
+        : sources[0]?.name;
+      document.getElementById("sources").innerHTML = sources.map((source) => `
+        <label class="source-pill">
+          <input type="checkbox" value="${escapeHtml(source.name)}" ${source.name === selectedDefault ? "checked" : ""}>
+          <span>${escapeHtml(source.name)}</span>
+          <small>${fmt.format(source.tableCount)} tables${source.catalogAvailable ? ", catalog" : ""}</small>
+        </label>
+      `).join("");
+    }
+
+    function selectedSources() {
+      return [...document.querySelectorAll("#sources input:checked")].map((input) => input.value);
+    }
+
+    async function startRun() {
+      const question = document.getElementById("question").value.trim();
+      const provider = document.getElementById("provider").value;
+      const model = document.getElementById("model").value.trim();
+      const sources = selectedSources();
+      document.getElementById("run-status").textContent = "Starting run...";
+      document.getElementById("run").disabled = true;
+      try {
+        const payload = await fetchJson("/api/runs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question, provider, model, sources }),
+        });
+        state.runId = payload.id;
+        if (state.pollTimer) clearInterval(state.pollTimer);
+        await pollRun();
+        state.pollTimer = setInterval(pollRun, 1500);
+      } catch (error) {
+        document.getElementById("run-status").textContent = error.message;
+        document.getElementById("run").disabled = false;
+      }
+    }
+
+    async function pollRun() {
+      if (!state.runId) return;
+      const run = await fetchJson(`/api/runs/${state.runId}`);
+      renderRun(run);
+      const done = ["done", "error"].includes(run.agents.cold.status)
+        && ["done", "error"].includes(run.agents.catalog.status);
+      if (done) {
+        clearInterval(state.pollTimer);
+        state.pollTimer = null;
+        document.getElementById("run").disabled = false;
+      }
+    }
+
+    function renderRun(run) {
+      document.getElementById("run-status").textContent = `Run ${run.id.slice(0, 8)} using ${run.provider}/${run.model} with ${run.sources.join(", ")}`;
+      renderAgent("cold", run.agents.cold);
+      renderAgent("catalog", run.agents.catalog);
+    }
+
+    function renderAgent(key, agent) {
+      document.getElementById(`${key}-status`).textContent = agent.status;
+      document.getElementById(`${key}-panel`).innerHTML = `
+        <section class="usage">
+          ${metric("Prompt", agent.usage.prompt_tokens)}
+          ${metric("Completion", agent.usage.completion_tokens)}
+          ${metric("Total tokens", agent.usage.total_tokens)}
+          ${metric("Tool calls", agent.toolCalls)}
+          ${metric("Discovery", agent.discoveryCalls)}
+          ${metric("SQL queries", agent.sqlQueries)}
+          ${metric("Result bytes", agent.resultBytes)}
+          ${metric("Elapsed", agent.elapsedMs ? `${(agent.elapsedMs / 1000).toFixed(1)}s` : "-")}
+        </section>
+        ${agent.error ? `<div class="notice">${escapeHtml(agent.error)}</div>` : ""}
+        <section>
+          <h3>Final Answer</h3>
+          <div class="answer">${escapeHtml(agent.answer || "Waiting for final answer...")}</div>
+        </section>
+        <details open>
+          <summary>Coral SQL Calls (${agent.sqlCalls.length})</summary>
+          ${agent.sqlCalls.map((call, index) => `
+            <div class="sql-call">
+              <strong>${index + 1}. ${call.discovery ? "Discovery" : "Data"} query - ${fmt.format(call.resultBytes)} bytes</strong>
+              <pre>${escapeHtml(call.sql)}</pre>
+              <pre>${escapeHtml(call.resultPreview)}</pre>
+            </div>
+          `).join("") || "<p>No SQL calls yet.</p>"}
+        </details>
+        <details>
+          <summary>Model / Action Log (${agent.steps.length})</summary>
+          <pre>${escapeHtml(JSON.stringify(agent.steps, null, 2))}</pre>
+        </details>
+      `;
+    }
+
+    function metric(label, value) {
+      const display = typeof value === "number" ? fmt.format(value) : value;
+      return `<div class="metric"><strong>${display}</strong><span>${label}</span></div>`;
+    }
+
+    async function rebuild() {
+      const el = document.getElementById("rebuild-status");
+      el.textContent = "Rebuilding...";
+      try {
+        const payload = await fetchJson("/api/rebuild", { method: "POST" });
+        el.textContent = payload.ok ? "Rebuild succeeded." : "Rebuild failed.";
+        await loadSources();
+      } catch (error) {
+        el.textContent = error.message;
+      }
+    }
+
+    document.getElementById("run").addEventListener("click", startRun);
+    document.getElementById("rebuild").addEventListener("click", rebuild);
+    document.getElementById("provider").addEventListener("change", (event) => {
+      const provider = event.target.value;
+      document.getElementById("model").value = event.target.dataset[`${provider}Model`];
+      const configured = event.target.dataset[`${provider}Configured`] === "true";
+      document.getElementById("run").disabled = !configured;
+      document.getElementById("setup-notice").hidden = configured;
+      if (!configured) {
+        document.getElementById("setup-notice").textContent = provider === "gemini"
+          ? "Gemini is selected but GEMINI_API_KEY/GOOGLE_API_KEY is not set. Set it and restart demo_server.py."
+          : "Groq is selected but GROQ_API_KEY is not set, or Groq may be blocked by 403/1010 in this environment.";
+      }
+    });
+    loadSources();
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "sources": [
+    {
+      "join_keys": "account__gravatar_id, account__id, account__node_id, actor__gravatar_id, actor__id",
+      "name": "github",
+      "required_filter_count": 584,
+      "required_filter_examples": [
+        "accepted_assignments.assignment_id",
+        "access.owner",
+        "access.repo",
+        "accounts.plan_id",
+        "activity.owner",
+        "activity.repo",
+        "activity_list_repos_starred_by_user.username",
+        "activity_list_repos_watched_by_user.username"
+      ],
+      "source_page": "C:/Users/akshu/OneDrive/Desktop/coral/optimized_catalog/sources/github.md",
+      "table_count": 362,
+      "use_for": "GitHub repos, PRs, issues, Actions, deployments; many tables require filters"
+    },
+    {
+      "join_keys": "deployment_id, incident_id, related_pr",
+      "name": "ops_incident_demo",
+      "required_filter_count": 0,
+      "required_filter_examples": [],
+      "source_page": "C:/Users/akshu/OneDrive/Desktop/coral/optimized_catalog/sources/ops_incident_demo.md",
+      "table_count": 6,
+      "use_for": "incident root-cause analysis across PRs, deploys, errors, tickets, Slack"
+    }
+  ]
+}

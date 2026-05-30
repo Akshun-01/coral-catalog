@@ -1,0 +1,244 @@
+name: ops_incident_demo
+version: 0.1.0
+dsl_version: 3
+backend: jsonl
+test_queries:
+  - SELECT * FROM ops_incident_demo.github_prs LIMIT 1
+  - SELECT * FROM ops_incident_demo.deployments LIMIT 1
+  - SELECT * FROM ops_incident_demo.incidents LIMIT 1
+  - SELECT * FROM ops_incident_demo.slack_messages LIMIT 1
+  - SELECT * FROM ops_incident_demo.support_tickets LIMIT 1
+  - SELECT * FROM ops_incident_demo.sentry_events LIMIT 1
+tables:
+  - name: github_prs
+    description: Synthetic GitHub pull requests for operational incident investigation.
+    source:
+      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      glob: github_prs.jsonl
+    columns:
+      - name: pr_number
+        type: Int64
+        nullable: false
+      - name: title
+        type: Utf8
+      - name: author
+        type: Utf8
+      - name: merged_at
+        type: Timestamp
+        expr:
+          kind: format_timestamp
+          input: iso8601
+          expr:
+            kind: path
+            path:
+              - merged_at
+      - name: service
+        type: Utf8
+      - name: risk
+        type: Utf8
+      - name: files_changed
+        type: Int64
+      - name: status
+        type: Utf8
+      - name: summary
+        type: Utf8
+      - name: deployment_id
+        type: Utf8
+      - name: reverts_pr
+        type: Int64
+      - name: fixes_pr
+        type: Int64
+
+  - name: deployments
+    description: Production deployments with service, PR, version, deployer, and rollout status.
+    source:
+      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      glob: deployments.jsonl
+    columns:
+      - name: deployment_id
+        type: Utf8
+        nullable: false
+      - name: service
+        type: Utf8
+      - name: environment
+        type: Utf8
+      - name: related_pr
+        type: Int64
+      - name: version
+        type: Utf8
+      - name: deployed_at
+        type: Timestamp
+        expr:
+          kind: format_timestamp
+          input: iso8601
+          expr:
+            kind: path
+            path:
+              - deployed_at
+      - name: deployed_by
+        type: Utf8
+      - name: status
+        type: Utf8
+      - name: summary
+        type: Utf8
+
+  - name: incidents
+    description: Incident records linked to deployments and pull requests.
+    source:
+      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      glob: incidents.jsonl
+    columns:
+      - name: incident_id
+        type: Utf8
+        nullable: false
+      - name: severity
+        type: Utf8
+      - name: service
+        type: Utf8
+      - name: started_at
+        type: Timestamp
+        expr:
+          kind: format_timestamp
+          input: iso8601
+          expr:
+            kind: path
+            path:
+              - started_at
+      - name: resolved_at
+        type: Timestamp
+        expr:
+          kind: format_timestamp
+          input: iso8601
+          expr:
+            kind: path
+            path:
+              - resolved_at
+      - name: deployment_id
+        type: Utf8
+      - name: related_pr
+        type: Int64
+      - name: summary
+        type: Utf8
+
+  - name: slack_messages
+    description: Slack operational chatter across deploy, support, backend, infra, and incident channels.
+    source:
+      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      glob: slack_messages.jsonl
+    columns:
+      - name: timestamp
+        type: Timestamp
+        expr:
+          kind: format_timestamp
+          input: iso8601
+          expr:
+            kind: path
+            path:
+              - timestamp
+      - name: channel
+        type: Utf8
+      - name: user
+        type: Utf8
+      - name: message
+        type: Utf8
+      - name: related_pr
+        type: Int64
+      - name: deployment_id
+        type: Utf8
+      - name: incident_id
+        type: Utf8
+
+  - name: support_tickets
+    description: Customer support tickets reporting login failures and post-incident follow-up.
+    source:
+      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      glob: support_tickets.jsonl
+    columns:
+      - name: ticket_id
+        type: Utf8
+        nullable: false
+      - name: created_at
+        type: Timestamp
+        expr:
+          kind: format_timestamp
+          input: iso8601
+          expr:
+            kind: path
+            path:
+              - created_at
+      - name: customer
+        type: Utf8
+      - name: plan
+        type: Utf8
+      - name: severity
+        type: Utf8
+      - name: channel
+        type: Utf8
+      - name: subject
+        type: Utf8
+      - name: message
+        type: Utf8
+      - name: affected_service
+        type: Utf8
+      - name: related_pr
+        type: Int64
+      - name: deployment_id
+        type: Utf8
+      - name: incident_id
+        type: Utf8
+      - name: status
+        type: Utf8
+      - name: first_response_at
+        type: Timestamp
+        expr:
+          kind: format_timestamp
+          input: iso8601
+          expr:
+            kind: path
+            path:
+              - first_response_at
+
+  - name: sentry_events
+    description: Sentry errors and recovery events for auth callback failures.
+    source:
+      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      glob: sentry_events.jsonl
+    columns:
+      - name: event_id
+        type: Utf8
+        nullable: false
+      - name: timestamp
+        type: Timestamp
+        expr:
+          kind: format_timestamp
+          input: iso8601
+          expr:
+            kind: path
+            path:
+              - timestamp
+      - name: service
+        type: Utf8
+      - name: environment
+        type: Utf8
+      - name: level
+        type: Utf8
+      - name: issue
+        type: Utf8
+      - name: error_type
+        type: Utf8
+      - name: message
+        type: Utf8
+      - name: route
+        type: Utf8
+      - name: tenant
+        type: Utf8
+      - name: idp
+        type: Utf8
+      - name: related_pr
+        type: Int64
+      - name: deployment_id
+        type: Utf8
+      - name: incident_id
+        type: Utf8
+      - name: fingerprint
+        type: Utf8

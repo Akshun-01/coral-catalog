@@ -1,0 +1,52 @@
+{"timestamp":"2026-05-18T08:12:11Z","username":"maya","channel":"#deployments","message":"Prod deploy for auth-service failed during migration step. Rolling back now.","pr_id":"PR-4821"}
+{"timestamp":"2026-05-18T08:14:42Z","username":"raj","channel":"#backend","message":"Seeing elevated 500s on payments API after latest release.","pr_id":"PR-4817"}
+{"timestamp":"2026-05-18T08:16:05Z","username":"lena","channel":"#incident-response","message":"Database CPU spiked to 95% in us-east-1. Investigating slow queries.","pr_id":"PR-4799"}
+{"timestamp":"2026-05-18T08:19:37Z","username":"omar","channel":"#customer-support","message":"Customer reported duplicate charges after retrying checkout.","pr_id":"PR-4817"}
+{"timestamp":"2026-05-18T08:23:10Z","username":"nina","channel":"#frontend","message":"Hotfix deployed for broken onboarding modal on Safari.","pr_id":"PR-4825"}
+{"timestamp":"2026-05-18T08:25:41Z","username":"kevin","channel":"#deployments","message":"Can someone approve the rollback pipeline for inventory-service?","pr_id":"PR-4808"}
+{"timestamp":"2026-05-18T08:29:54Z","username":"sara","channel":"#product-launch","message":"Feature flag enabled for new analytics dashboard to 10% of users.","pr_id":"PR-4772"}
+{"timestamp":"2026-05-18T08:34:18Z","username":"alex","channel":"#infra","message":"Kubernetes node autoscaling is lagging again under traffic burst.","pr_id":"PR-4760"}
+{"timestamp":"2026-05-18T08:37:02Z","username":"david","channel":"#customer-support","message":"Enterprise customer says exports are timing out for reports over 1GB.","pr_id":"PR-4788"}
+{"timestamp":"2026-05-18T08:41:27Z","username":"priya","channel":"#backend","message":"Retry queue is backing up. Messages delayed by almost 12 minutes.","pr_id":"PR-4813"}
+{"timestamp":"2026-05-18T08:45:55Z","username":"jon","channel":"#incident-response","message":"Confirmed outage isolated to EU region load balancer.","pr_id":"PR-4802"}
+{"timestamp":"2026-05-18T08:48:11Z","username":"tina","channel":"#frontend","message":"Users are reporting blank screens after login on mobile web.","pr_id":"PR-4827"}
+{"timestamp":"2026-05-18T08:52:46Z","username":"mike","channel":"#deployments","message":"Staging deploy succeeded. Waiting on QA signoff before prod push.","pr_id":"PR-4830"}
+{"timestamp":"2026-05-18T08:57:19Z","username":"anika","channel":"#product-launch","message":"Reminder: dark mode rollout scheduled for tonight at 11 PM UTC.","pr_id":"PR-4755"}
+{"timestamp":"2026-05-18T09:01:08Z","username":"leo","channel":"#infra","message":"Redis cache eviction rate jumped significantly after deploy.","pr_id":"PR-4815"}
+{"timestamp":"2026-05-18T09:05:33Z","username":"chris","channel":"#backend","message":"Webhook retries are causing duplicate event processing.","pr_id":"PR-4794"}
+{"timestamp":"2026-05-18T09:09:51Z","username":"maya","channel":"#incident-response","message":"Status page updated. Investigating intermittent API failures.","pr_id":"PR-4821"}
+{"timestamp":"2026-05-18T09:13:44Z","username":"emma","channel":"#customer-support","message":"Top customer unable to generate invoices since this morning.","pr_id":"PR-4805"}
+{"timestamp":"2026-05-18T09:18:22Z","username":"raj","channel":"#deployments","message":"Retrying deployment with migrations disabled temporarily.","pr_id":"PR-4821"}
+{"timestamp":"2026-05-18T09:22:10Z","username":"lena","channel":"#infra","message":"Packet loss detected between app nodes and RDS cluster.","pr_id":"PR-4789"}
+{"timestamp":"2026-05-18T09:26:58Z","username":"omar","channel":"#backend","message":"Patched memory leak in notification-service. Monitoring now.","pr_id":"PR-4832"}
+{"timestamp":"2026-05-18T09:30:41Z","username":"nina","channel":"#frontend","message":"A/B test metrics look healthy after homepage redesign launch.","pr_id":"PR-4748"}
+{"timestamp":"2026-05-18T09:34:05Z","username":"kevin","channel":"#incident-response","message":"Error rates dropping after rollback completed successfully.","pr_id":"PR-4808"}
+{"timestamp":"2026-05-18T09:37:49Z","username":"sara","channel":"#customer-support","message":"Customer success team escalating complaints about delayed notifications.","pr_id":"PR-4813"}
+{"timestamp":"2026-05-18T09:42:16Z","username":"alex","channel":"#infra","message":"VPN access broken for on-call engineers after IAM policy update.","pr_id":"PR-4779"}
+{"timestamp":"2026-05-18T09:46:02Z","username":"david","channel":"#backend","message":"Rate limiter config may be blocking legitimate traffic.","pr_id":"PR-4820"}
+{"timestamp":"2026-05-18T09:50:34Z","username":"priya","channel":"#deployments","message":"Blue-green deployment paused due to unhealthy canary metrics.","pr_id":"PR-4834"}
+{"timestamp":"2026-05-18T09:54:28Z","username":"jon","channel":"#product-launch","message":"New billing portal launched for internal beta users.","pr_id":"PR-4768"}
+{"timestamp":"2026-05-18T09:58:15Z","username":"tina","channel":"#frontend","message":"Fixed CSS regression causing navbar overlap on tablets.","pr_id":"PR-4831"}
+{"timestamp":"2026-05-18T10:03:07Z","username":"mike","channel":"#incident-response","message":"Seeing recovery across all regions except ap-south-1.","pr_id":"PR-4802"}
+{"timestamp":"2026-05-18T10:07:39Z","username":"anika","channel":"#customer-support","message":"Customer attached screenshots of failed password reset emails.","pr_id":"PR-4791"}
+{"timestamp":"2026-05-18T10:11:22Z","username":"leo","channel":"#backend","message":"Queue consumer crashed due to malformed payload edge case.","pr_id":"PR-4829"}
+{"timestamp":"2026-05-18T10:15:58Z","username":"chris","channel":"#deployments","message":"Production release completed successfully after hotfix merge.","pr_id":"PR-4835"}
+{"timestamp":"2026-05-18T10:20:13Z","username":"maya","channel":"#infra","message":"Cloudflare latency increased significantly for EU customers.","pr_id":"PR-4806"}
+{"timestamp":"2026-05-18T10:24:45Z","username":"emma","channel":"#product-launch","message":"Search v2 feature enabled for all paid accounts.","pr_id":"PR-4739"}
+{"timestamp":"2026-05-18T10:29:30Z","username":"raj","channel":"#backend","message":"Auth tokens are expiring too early after config update.","pr_id":"PR-4811"}
+{"timestamp":"2026-05-18T10:33:02Z","username":"lena","channel":"#incident-response","message":"Primary database failover completed automatically.","pr_id":"PR-4789"}
+{"timestamp":"2026-05-18T10:37:19Z","username":"omar","channel":"#customer-support","message":"Several users reporting missing Slack notifications.","pr_id":"PR-4801"}
+{"timestamp":"2026-05-18T10:41:06Z","username":"nina","channel":"#frontend","message":"Investigating accessibility issues flagged in latest audit.","pr_id":"PR-4750"}
+{"timestamp":"2026-05-18T10:45:48Z","username":"kevin","channel":"#deployments","message":"Need another reviewer before merging payment gateway refactor.","pr_id":"PR-4838"}
+{"timestamp":"2026-05-18T10:49:17Z","username":"sara","channel":"#backend","message":"Session cleanup cron job failed overnight again.","pr_id":"PR-4782"}
+{"timestamp":"2026-05-18T10:53:40Z","username":"alex","channel":"#infra","message":"Disk usage crossed 85% on logging cluster.","pr_id":"PR-4798"}
+{"timestamp":"2026-05-18T10:57:11Z","username":"david","channel":"#product-launch","message":"Realtime collaboration feature now enabled for internal staff.","pr_id":"PR-4722"}
+{"timestamp":"2026-05-18T11:01:56Z","username":"priya","channel":"#incident-response","message":"Monitoring dashboards stable for last 20 minutes.","pr_id":"PR-4802"}
+{"timestamp":"2026-05-18T11:06:33Z","username":"jon","channel":"#customer-support","message":"Customer threatening to churn over recurring login failures.","pr_id":"PR-4811"}
+{"timestamp":"2026-05-18T11:10:04Z","username":"tina","channel":"#frontend","message":"Deployed fix for broken avatar uploads on Firefox.","pr_id":"PR-4840"}
+{"timestamp":"2026-05-18T11:14:27Z","username":"mike","channel":"#backend","message":"Added extra logging around payment reconciliation worker.","pr_id":"PR-4836"}
+{"timestamp":"2026-05-18T11:18:55Z","username":"anika","channel":"#deployments","message":"Canary traffic increased from 5% to 25% after healthy metrics.","pr_id":"PR-4834"}
+{"timestamp":"2026-05-18T11:22:38Z","username":"leo","channel":"#infra","message":"Investigating intermittent DNS resolution failures.","pr_id":"PR-4804"}
+{"timestamp":"2026-05-18T11:27:09Z","username":"chris","channel":"#customer-support","message":"Support queue flooded with complaints about delayed emails.","pr_id":"PR-4791"}
+{"timestamp":"2026-05-18T11:31:42Z","username":"maya","channel":"#product-launch","message":"Public announcement for AI assistant feature goes live tomorrow.","pr_id":"PR-4710"}
+{"timestamp":"2026-05-18T11:36:18Z","username":"emma","channel":"#incident-response","message":"Closing incident. Root cause was misconfigured connection pool limits.","pr_id":"PR-4789"}
