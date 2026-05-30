@@ -13,7 +13,7 @@ tables:
   - name: github_prs
     description: Synthetic GitHub pull requests for operational incident investigation.
     source:
-      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      location: ../data/ops_incident_demo/
       glob: github_prs.jsonl
     columns:
       - name: pr_number
@@ -52,7 +52,7 @@ tables:
   - name: deployments
     description: Production deployments with service, PR, version, deployer, and rollout status.
     source:
-      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      location: ../data/ops_incident_demo/
       glob: deployments.jsonl
     columns:
       - name: deployment_id
@@ -85,7 +85,7 @@ tables:
   - name: incidents
     description: Incident records linked to deployments and pull requests.
     source:
-      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      location: ../data/ops_incident_demo/
       glob: incidents.jsonl
     columns:
       - name: incident_id
@@ -123,7 +123,7 @@ tables:
   - name: slack_messages
     description: Slack operational chatter across deploy, support, backend, infra, and incident channels.
     source:
-      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      location: ../data/ops_incident_demo/
       glob: slack_messages.jsonl
     columns:
       - name: timestamp
@@ -151,7 +151,7 @@ tables:
   - name: support_tickets
     description: Customer support tickets reporting login failures and post-incident follow-up.
     source:
-      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      location: ../data/ops_incident_demo/
       glob: support_tickets.jsonl
     columns:
       - name: ticket_id
@@ -201,7 +201,7 @@ tables:
   - name: sentry_events
     description: Sentry errors and recovery events for auth callback failures.
     source:
-      location: file:///C:/Users/akshu/OneDrive/Desktop/coral/data/ops_incident_demo/
+      location: ../data/ops_incident_demo/
       glob: sentry_events.jsonl
     columns:
       - name: event_id

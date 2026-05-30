@@ -14,7 +14,7 @@
         "activity_list_repos_starred_by_user.username",
         "activity_list_repos_watched_by_user.username"
       ],
-      "source_page": "C:/Users/akshu/OneDrive/Desktop/coral/optimized_catalog/sources/github.md",
+      "source_page": "./sources/github.md",
       "table_count": 362,
       "use_for": "GitHub repos, PRs, issues, Actions, deployments; many tables require filters"
     },
@@ -23,7 +23,7 @@
       "name": "ops_incident_demo",
       "required_filter_count": 0,
       "required_filter_examples": [],
-      "source_page": "C:/Users/akshu/OneDrive/Desktop/coral/optimized_catalog/sources/ops_incident_demo.md",
+      "source_page": "./sources/ops_incident_demo.md",
       "table_count": 6,
       "use_for": "incident root-cause analysis across PRs, deploys, errors, tickets, Slack"
     }
